@@ -87,6 +87,37 @@ namespace CatConverter
                 var rightFlangeToSlab1 = (int)numbers[numIndex]; numIndex++;
                 var rightFlangeToSlab2 = (int)numbers[numIndex]; numIndex++;
             }
+
+            var leftSep = (int)numbers[numIndex] == 1; numIndex++;
+            var rightSep = (int)numbers[numIndex] == 1; numIndex++;
+
+            var csPointsCount = (int)numbers[numIndex];
+            var symmetric = csPointsCount != 9999; numIndex++;
+            if (symmetric)
+                csCount = (csCount + 1) / 2;
+
+            for (var i = 0; i < csCount; i++)
+            {
+                var PointIndices = new int[csCount];
+                for (var j = 0; j < PointIndices.Length; j++) PointIndices[j] = j;
+
+                if (i == 0 && !symmetric)
+                    csPointsCount = (int)numbers[numIndex]; numIndex++;
+
+                if (i > 0)
+                {
+                    csPointsCount = (int)numbers[numIndex]; numIndex++;
+                    for (var j = 0; j < csPointsCount; j++)
+                    {
+                        PointIndices[j] = (int)numbers[numIndex]; numIndex++;
+                    }
+                }
+
+                for (var j = 0; j < csPointsCount; j++)
+                {
+
+                }
+            }
         }
         /// <summary>
         /// Z coordinate (in lateral direction) of beam longitudinal axis 
